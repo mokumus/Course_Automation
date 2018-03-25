@@ -1,18 +1,21 @@
 package com.muhammedokumus;
 
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility class for csv file reading.
+ */
 public class CSV_Utils {
     private final List<String[]> listOfRows = new ArrayList<>();
 
     /**
-     * Takes an input file formatted as a csv, puts each line of file to a List of Strings.
-     * @param filename
-     * File adress.
-     * @return
-     * Strings separated my comas, 1 entry for each line
+     * pre: A csv formatted file with values splitted by ';'
+     * post: A list of String arrays, each String array is made of corresponding line of file.
+     * @param filename  file path.
+     * @return List of string arrays.
      */
     public List<String[]> csvFileToListOfStrings(String filename){
         BufferedReader br = null;

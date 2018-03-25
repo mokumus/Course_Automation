@@ -1,18 +1,18 @@
 package com.muhammedokumus;
 
 public class Course {
-    private int semester;
+    private String semester;
     private String courseCode;
     private String courseTitle;
-    private int ectsCredit;
-    private double gtuCredit;
+    private String ectsCredit;
+    private String gtuCredit;
     private String creditWeight;
 
     public Course(){
-        this(-1,null,null,-1,-1,null);
+        this(null,null,null,null,null,null);
     }
 
-    public Course(int semester, String courseCode, String courseTitle, int ectsCredit, int gtuCredit, String creditWeight){
+    public Course(String semester, String courseCode, String courseTitle, String ectsCredit, String gtuCredit, String creditWeight){
         this.semester = semester;
         this.courseCode = courseCode;
         this.courseTitle = courseTitle;
@@ -33,22 +33,22 @@ public class Course {
                 "]";
     }
     //SETTERS
-    private void setSemester(int semester){ this.semester = semester; }
+    public void setSemester(String semester){ this.semester = semester; }
 
-    private void setCourseCode(String courseCode) { this.courseCode = courseCode; }
+    public void setCourseCode(String courseCode) { this.courseCode = courseCode; }
 
-    private void setCourseTitle(String courseTitle) { this.courseTitle = courseTitle; }
+    public void setCourseTitle(String courseTitle) { this.courseTitle = courseTitle; }
 
-    private void setEctsCredit(int ectsCredit) { this.ectsCredit = ectsCredit; }
+    public void setEctsCredit(String ectsCredit) { this.ectsCredit = ectsCredit; }
 
-    private void setGtuCredit(double gtuCredit) { this.gtuCredit = gtuCredit; }
+    public void setGtuCredit(String gtuCredit) { this.gtuCredit = gtuCredit; }
 
-    private void setCreditWeight(String creditWeight) { this.creditWeight = creditWeight; }
+    public void setCreditWeight(String creditWeight) { this.creditWeight = creditWeight; }
 
 
 
     //GETTERS
-    public int getSemester(){
+    public String getSemester(){
         return semester;
     }
 
@@ -56,9 +56,9 @@ public class Course {
 
     public String getCourseTitle(){ return courseTitle; }
 
-    public int getEctsCredit(){ return ectsCredit; }
+    public String getEctsCredit(){ return ectsCredit; }
 
-    public double getGtuCredit() { return gtuCredit; }
+    public String getGtuCredit() { return gtuCredit; }
 
     public String getCreditWeight() { return creditWeight; }
 }

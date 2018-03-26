@@ -1,6 +1,8 @@
 package com.muhammedokumus;
 
 
+import com.muhammedokumus.coursestructure.Course;
+
 import java.util.NoSuchElementException;
 
 public class Main {
@@ -83,8 +85,7 @@ public class Main {
         } catch (IndexOutOfBoundsException e){
             System.out.println(e + "\nDidn't forward error to stderr for readability.");
         }
-
-
+        System.out.println("******************************************************************");
     }
 
 

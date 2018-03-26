@@ -1,6 +1,8 @@
 package com.muhammedokumus;
 
 
+import com.muhammedokumus.coursestructure.Course;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -27,6 +29,11 @@ public class CourseManagementSystem {
            Course currentLine = new Course(item[0], item[1], item[2], item[3], item[4], item[5]);
            courses.add(currentLine);
        }
+   }
+
+
+   protected LinkedList<Course> getCourses(){
+       return courses;
    }
 
     /**

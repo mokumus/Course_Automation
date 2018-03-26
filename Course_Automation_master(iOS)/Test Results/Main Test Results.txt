@@ -1,0 +1,158 @@
+*************************** Scenario 1 ***************************
+Accessing a course by code and manipulating given reference.
+Unedited: Course[semester=1, code=CSE 107, title=Introduction To Computer Science Laboratory, ects=2, gtu=1, T+U+L=0+0+2]
+        test1.setCourseCode("105");
+        test1.setCourseTitle("Extra Hard New C Programming Lab");
+        test1.setSemester("2");
+        test1.setEctsCredit("10");
+        test1.setGtuCredit("8");
+        test1.setCreditWeight("0+0+10");
+Edited : Course[semester=2, code=105, title=Extra Hard New C Programming Lab, ects=10, gtu=8, T+U+L=0+0+10]
+Note: This is my get method, not getByCode method difference is one returns reference, other just prints.
+******************************************************************
+
+*************************** Scenario 2 ***************************
+Trying to access to element with an invalid course code.
+java.util.NoSuchElementException: Item not found. Code : CSI 407
+Didn't forward error to stderr for readability.
+******************************************************************
+
+*************************** Scenario 3 ***************************
+Trying to access with optional course code XXX XXX.
+java.lang.IllegalArgumentException: Optional courses are only available to edit by indexes.
+Didn't forward error to stderr for readability.
+******************************************************************
+
+*************************** Scenario 4 ***************************
+Trying to access with index and manipulate.
+Unedited: Course[semester=1, code=XXX XXX, title=Teknik Olmayan Seçmeli (SSC), ects=2, gtu=1, T+U+L=2+0+0]
+        test4.setCourseCode("255");
+        test4.setCourseTitle("İş Hayatı İçin İnglizce");
+        test4.setSemester("1");
+        test4.setEctsCredit("4");
+        test4.setGtuCredit("2");
+        test4.setCreditWeight("2+1+1");
+Edited: Course[semester=1, code=255, title=İş Hayatı İçin İnglizce, ects=4, gtu=2, T+U+L=2+1+1]
+******************************************************************
+
+*************************** Scenario 5 ***************************
+Trying to access to out of range index.
+java.lang.IndexOutOfBoundsException: Index: -1, Size: 55
+Didn't forward error to stderr for readability.
+******************************************************************
+
+
+*************************** PART 2***************************
+
+
+*************************** Scenario 1 ***************************
+Trying to disable a course by index.
+CSE 107 isAccessible: true
+advCms.disable(3);
+advCms.showDisabled();
+1) Course[semester=1, code=CSE 107, title=Introduction To Computer Science Laboratory, ects=2, gtu=1, T+U+L=0+0+2]
+******************************************************************
+
+*************************** Scenario 2 ***************************
+Trying to disable a course by course code.
+PHYS 152 isAccesable: true
+advCms.disable("PHYS 152");
+advCms.showDisabled();
+1) Course[semester=1, code=CSE 107, title=Introduction To Computer Science Laboratory, ects=2, gtu=1, T+U+L=0+0+2]
+2) Course[semester=2, code=PHYS 152, title=Physics Laboratory II, ects=1, gtu=1, T+U+L=0+0+2]
+******************************************************************
+
+*************************** Scenario 3 ***************************
+Trying to enable a course by index.
+advCms.showDisabled();
+1) Course[semester=1, code=CSE 107, title=Introduction To Computer Science Laboratory, ects=2, gtu=1, T+U+L=0+0+2]
+2) Course[semester=2, code=PHYS 152, title=Physics Laboratory II, ects=1, gtu=1, T+U+L=0+0+2]
+advCms.enable(3)
+advCms.showDisabled();
+1) Course[semester=2, code=PHYS 152, title=Physics Laboratory II, ects=1, gtu=1, T+U+L=0+0+2]
+******************************************************************
+
+*************************** Scenario 4 ***************************
+Trying to enable a course by course code.
+advCms.showDisabled();
+1) Course[semester=2, code=PHYS 152, title=Physics Laboratory II, ects=1, gtu=1, T+U+L=0+0+2]
+advCms.enable("PHYS 152");
+advCms.showDisabled();
+There are no disabled courses
+******************************************************************
+
+*************************** Scenario 5 ***************************
+Disabling courses by code, then printing disabled courses with showDisabled() method
+        advCms.disable("CSE 232");
+        advCms.disable("EN 112");
+        advCms.disable("CSE 211");
+        advCms.showDisabled();
+1) Course[semester=3, code=CSE 211, title=Discrete Mathematics, ects=6, gtu=3, T+U+L=3+0+0]
+2) Course[semester=4, code=CSE 232, title=Logic Circuits And Design, ects=6, gtu=3, T+U+L=3+0+0]
+3) Course[semester=4, code=EN 112, title=Academic English, ects=2, gtu=2, T+U+L=2+0+0]
+******************************************************************
+
+*************************** Scenario 6 ***************************
+Trying to set a course to different values.
+Before set() call: Course[semester=1, code=PHYS 121, title=Physics I, ects=6, gtu=4, T+U+L=3+0+0]
+advCms.set(5,aCourse);
+After set() call: Course[semester=2, code=TEST 101, title=Is This Working?, ects=1, gtu=1, T+U+L=1+0+0]
+******************************************************************
+
+*************************** Scenario 7 ***************************
+Trying to set a disabled course to different values.
+You are trying to access a disabled element.
+Before set() call: null
+advCms.set(5,aCourse);
+You are trying to access a disabled element.
+After set() call: null
+******************************************************************
+
+*************************** Scenario 8 ***************************
+Disabled courses:
+1) Course[semester=3, code=CSE 211, title=Discrete Mathematics, ects=6, gtu=3, T+U+L=3+0+0]
+2) Course[semester=4, code=CSE 232, title=Logic Circuits And Design, ects=6, gtu=3, T+U+L=3+0+0]
+3) Course[semester=4, code=EN 112, title=Academic English, ects=2, gtu=2, T+U+L=2+0+0]
+Size before enabling: 52
+        advCms.enable("CSE 211");
+        advCms.enable("CSE 232");
+        advCms.enable("EN 112");
+Size after enabling: 55
+There are no disabled courses
+******************************************************************
+
+*************************** Scenario 9 ***************************
+Removing by index, enabled item
+First index before removal: Course[semester=1, code=XXX XXX, title=Teknik Olmayan Seçmeli (SSC), ects=2, gtu=1, T+U+L=2+0+0]
+First index after removal: Course[semester=1, code=CSE 101, title=Introduction To Computer Engineering, ects=8, gtu=3, T+U+L=3+0+0]
+******************************************************************
+
+*************************** Scenario 10 ***************************
+Trying to remove disabled item:
+Disabling course at index 1 and trying to remove it.
+        advCms.disable(1);
+        advCms.showDisabled();
+1) Course[semester=1, code=CSE 101, title=Introduction To Computer Engineering, ects=8, gtu=3, T+U+L=3+0+0]
+Enabling the course we tried to remove to see if it is still there.
+advCms.enable(1);
+First index after trying to remove: Course[semester=1, code=CSE 101, title=Introduction To Computer Engineering, ects=8, gtu=3, T+U+L=3+0+0]
+******************************************************************
+
+*************************** Scenario 11 ***************************
+Creating an iterator from enabled item.
+Traversing the list in forward direction:
+Course[semester=8, code=CSE 4XX, title=Bölüm Seçmeli (Temel Alan) Seçmeli II, ects=6, gtu=3, T+U+L=3+0+0]
+Course[semester=8, code=ENG 402, title=?, ects=1, gtu=1, T+U+L= 0+0+0]
+Course[semester=8, code=XXX XXX, title=Teknik Olmayan Seçmeli (SSB), ects=3, gtu=2, T+U+L=2+0+0]
+Course[semester=8, code=XXX XXX, title=Teknik Olmayan Seçmeli (SSA), ects=3, gtu=2, T+U+L=2+0+0]
+******************************************************************
+
+*************************** Scenario 12 ***************************
+Trying to create an iterator from disabled item.
+        ListIterator<BasicCourse> litrDis = null;
+        advCms.disable(50);
+        litrDis = advCms.listIterator(50);
+litrDis == null :true
+******************************************************************
+
+Process finished with exit code 0

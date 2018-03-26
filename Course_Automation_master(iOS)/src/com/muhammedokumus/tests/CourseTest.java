@@ -1,6 +1,6 @@
 package com.muhammedokumus.tests;
 
-import com.muhammedokumus.coursestructure.Course;
+import com.muhammedokumus.coursestructure.BasicCourse;
 import org.junit.jupiter.api.Test;
 
 class CourseTest {
@@ -12,7 +12,7 @@ class CourseTest {
         //System.out.println(course1);
 
 
-        Course emptyCourse = new Course();
+        BasicCourse emptyCourse = new BasicCourse();
         System.out.println(emptyCourse);
     }
 

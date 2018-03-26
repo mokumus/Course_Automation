@@ -1,7 +1,7 @@
 package com.muhammedokumus;
 
 
-import com.muhammedokumus.coursestructure.Course;
+import com.muhammedokumus.coursestructure.BasicCourse;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
  * Class to handle tasks about course data access.
  */
 public class CourseManagementSystem {
-   private LinkedList<Course> courses = new LinkedList<>();
+   private LinkedList<BasicCourse> courses = new LinkedList<>();
    public final int MAX_SEMS = 8;
 
     /**
@@ -21,18 +21,22 @@ public class CourseManagementSystem {
      * @param filename file path to csv file
      */
    public CourseManagementSystem(String filename) {
+        initCourses(filename);
+   }
+
+   protected void initCourses(String filename){
        CSV_Utils coursesFile = new CSV_Utils();
        List<String[]> rawCourseData;
        rawCourseData = coursesFile.csvFileToListOfStrings(filename);
 
        for (String[] item : rawCourseData) {
-           Course currentLine = new Course(item[0], item[1], item[2], item[3], item[4], item[5]);
+           BasicCourse currentLine = new BasicCourse(item[0], item[1], item[2], item[3], item[4], item[5]);
            courses.add(currentLine);
        }
    }
 
 
-   protected LinkedList<Course> getCourses(){
+   protected LinkedList<BasicCourse> getCourses(){
        return courses;
    }
 
@@ -49,7 +53,7 @@ public class CourseManagementSystem {
        else{
            System.out.println("************************************************************************************************************");
            System.out.println(semester + ". Semester Courses");
-           for(Course item : courses){
+           for(BasicCourse item : courses){
                if(Integer.toString(semester).equals(item.getSemester()))
                    System.out.println(item);
            }
@@ -91,7 +95,7 @@ public class CourseManagementSystem {
     public int getByCode(String code){
         int found = 0;
 
-        for(Course item : courses){
+        for(BasicCourse item : courses){
             if(code.equals(item.getCourseCode())){
                 System.out.println(item);
                 found = 1;
@@ -109,11 +113,11 @@ public class CourseManagementSystem {
      * @param code code of the course
      * @return Course object reference
      */
-    public Course get(String code){
+    public BasicCourse get(String code){
         if(code.equals("XXX XXX"))
             throw new IllegalArgumentException("Optional courses are only available to edit by indexes.");
 
-        for(Course item : courses){
+        for(BasicCourse item : courses){
             if(code.equals(item.getCourseCode())){
                 return item;
             }
@@ -126,7 +130,7 @@ public class CourseManagementSystem {
      * @param courseIndex index of the course
      * @return Course object reference
      */
-    public Course get(int courseIndex){
+    public BasicCourse get(int courseIndex){
         return courses.get(courseIndex);
     }
 

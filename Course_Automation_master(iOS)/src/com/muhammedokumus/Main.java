@@ -1,21 +1,19 @@
 package com.muhammedokumus;
 
 
-import com.muhammedokumus.coursestructure.Course;
+import com.muhammedokumus.coursestructure.BasicCourse;
 
+import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 public class Main {
-    public static void main(String[] args) {
-        //Course myCourse = new Course(1, "CSE 222", "Data Structures and Algorithims", 8, 6,"5+0+0");
-        //System.out.println(myCourse);
 
+    public static void main(String[] args) {
         CourseManagementSystem cms = new CourseManagementSystem("Files/Courses.csv");
-        //System.out.println(cms);
 
         System.out.println("\n*************************** Scenario 1 ***************************");
         System.out.println("Accessing a course by code and manipulating given reference.");
-        Course test1 = cms.get("CSE 107");
+        BasicCourse test1 = cms.get("CSE 107");
         System.out.println("Unedited: " + test1);
 
         System.out.println("        test1.setCourseCode(\"105\");\n" +
@@ -39,7 +37,7 @@ public class Main {
         System.out.println("\n*************************** Scenario 2 ***************************");
         System.out.println("Trying to access to element with an invalid course code.");
         try{
-            Course test2 = cms.get("CSI 407");
+            BasicCourse test2 = cms.get("CSI 407");
         } catch (NoSuchElementException e){
             System.out.println(e + "\nDidn't forward error to stderr for readability.");
         }
@@ -48,7 +46,7 @@ public class Main {
         System.out.println("\n*************************** Scenario 3 ***************************");
         System.out.println("Trying to access with optional course code XXX XXX.");
         try{
-            Course test3 = cms.get("XXX XXX");
+            BasicCourse test3 = cms.get("XXX XXX");
         } catch (IllegalArgumentException e){
             System.out.println(e + "\nDidn't forward error to stderr for readability.");
         }
@@ -57,7 +55,7 @@ public class Main {
         System.out.println("\n*************************** Scenario 4 ***************************");
         System.out.println("Trying to access with index and manipulate.");
 
-        Course test4 = cms.get(1);
+        BasicCourse test4 = cms.get(1);
         System.out.println("Unedited: " + test4);
 
         test4.setCourseCode("255");
@@ -81,10 +79,147 @@ public class Main {
         System.out.println("\n*************************** Scenario 5 ***************************");
         System.out.println("Trying to access to out of range index.");
         try{
-            Course test5 = cms.get(-1);
+            BasicCourse test5 = cms.get(-1);
         } catch (IndexOutOfBoundsException e){
             System.out.println(e + "\nDidn't forward error to stderr for readability.");
         }
+        System.out.println("******************************************************************");
+
+        System.out.println("\n\n*************************** PART 2***************************");
+        System.out.println("\n\n*************************** Scenario 1 ***************************");
+
+        AdvancedCMS  advCms = new AdvancedCMS("Files/Courses.csv");
+
+        System.out.println("Trying to disable a course by index.");
+        System.out.println(advCms.get(3).getCourseCode() + " isAccessible: " + advCms.get(3).isAccessable());
+        System.out.println("advCms.disable(3);");
+        advCms.disable(3);
+        System.out.println("advCms.showDisabled();");
+        advCms.showDisabled();
+        System.out.println("******************************************************************");
+
+        System.out.println("\n*************************** Scenario 2 ***************************");
+        System.out.println("Trying to disable a course by course code.");
+        System.out.println(advCms.get("PHYS 152").getCourseCode() + " isAccesable: " + advCms.get("PHYS 152").isAccessable());
+        System.out.println("advCms.disable(\"PHYS 152\");");
+        advCms.disable("PHYS 152");
+        System.out.println("advCms.showDisabled();");
+        advCms.showDisabled();
+        System.out.println("******************************************************************");
+
+        System.out.println("\n*************************** Scenario 3 ***************************");
+        System.out.println("Trying to enable a course by index.");
+        System.out.println("advCms.showDisabled();");
+        advCms.showDisabled();
+        System.out.println("advCms.enable(3)");
+        advCms.enable(3);
+        System.out.println("advCms.showDisabled();");
+        advCms.showDisabled();
+        System.out.println("******************************************************************");
+
+        System.out.println("\n*************************** Scenario 4 ***************************");
+        System.out.println("Trying to enable a course by course code.");
+        System.out.println("advCms.showDisabled();");
+        advCms.showDisabled();
+        System.out.println("advCms.enable(\"PHYS 152\");");
+        advCms.enable("PHYS 152");
+        System.out.println("advCms.showDisabled();");
+        advCms.showDisabled();
+        System.out.println("******************************************************************");
+
+        System.out.println("\n*************************** Scenario 5 ***************************");
+        System.out.println("Disabling courses by code, then printing disabled courses with showDisabled() method");
+
+        System.out.println("        advCms.disable(\"CSE 232\");\n" +
+                "        advCms.disable(\"EN 112\");\n" +
+                "        advCms.disable(\"CSE 211\");\n" +
+                "        advCms.showDisabled();");
+
+        advCms.disable("CSE 232");
+        advCms.disable("EN 112");
+        advCms.disable("CSE 211");
+        advCms.showDisabled();
+        System.out.println("******************************************************************");
+
+        System.out.println("\n*************************** Scenario 6 ***************************");
+        System.out.println("Trying to set a course to different values.");
+        BasicCourse aCourse = new BasicCourse("2", "TEST 101", "Is This Working?" , "1", "1", "1+0+0");
+        System.out.println("Before set() call: " + advCms.get(5));
+        advCms.set(5,aCourse);
+        System.out.println("advCms.set(5,aCourse);");
+        System.out.println("After set() call: " + advCms.get(5));
+        System.out.println("******************************************************************");
+
+        System.out.println("\n*************************** Scenario 7 ***************************");
+        System.out.println("Trying to set a disabled course to different values.");
+        System.out.println("Before set() call: " + advCms.get(25));
+        advCms.set(25,aCourse);
+        System.out.println("advCms.set(5,aCourse);");
+        System.out.println("After set() call: " + advCms.get(25));
+        System.out.println("******************************************************************");
+
+        System.out.println("\n*************************** Scenario 8 ***************************");
+        System.out.println("Disabled courses:");
+        advCms.showDisabled();
+        System.out.println("Size before enabling: " + advCms.size());
+        advCms.enable("CSE 211");
+        advCms.enable("CSE 232");
+        advCms.enable("EN 112");
+        System.out.println("        advCms.enable(\"CSE 211\");\n" +
+                "        advCms.enable(\"CSE 232\");\n" +
+                "        advCms.enable(\"EN 112\");");
+
+        System.out.println("Size after enabling: " + advCms.size());
+        advCms.showDisabled();
+        System.out.println("******************************************************************");
+
+        System.out.println("\n*************************** Scenario 9 ***************************");
+        System.out.println("Removing by index, enabled item");
+        System.out.println("First index before removal: " + advCms.get(1));
+        advCms.remove(1);
+        System.out.println("First index after removal: " + advCms.get(1));
+        System.out.println("******************************************************************");
+
+        System.out.println("\n*************************** Scenario 10 ***************************");
+        System.out.println("Trying to remove disabled item:");
+
+        System.out.println("Disabling course at index 1 and trying to remove it.");
+        System.out.println("        advCms.disable(1);\n" +
+                "        advCms.showDisabled();");
+
+        advCms.disable(1);
+        advCms.showDisabled();
+        advCms.remove(1);
+
+        System.out.println("Enabling the course we tried to remove to see if it is still there. ");
+        System.out.println("advCms.enable(1);");
+        advCms.enable(1);
+
+        System.out.println("First index after trying to remove: " + advCms.get(1));
+        System.out.println("******************************************************************");
+
+        System.out.println("\n*************************** Scenario 11 ***************************");
+        System.out.println("Creating an iterator from enabled item.");
+        ListIterator<BasicCourse> litr = null;
+        litr = advCms.listIterator(50);
+
+        System.out.println("Traversing the list in forward direction:");
+        while(litr.hasNext()){
+            System.out.println(litr.next());
+        }
+        System.out.println("******************************************************************");
+
+        System.out.println("\n*************************** Scenario 12 ***************************");
+        System.out.println("Trying to create an iterator from disabled item.");
+        System.out.println("        ListIterator<BasicCourse> litrDis = null;\n" +
+                "        advCms.disable(50);\n" +
+                "        litrDis = advCms.listIterator(50);");
+        ListIterator<BasicCourse> litrDis = null;
+        advCms.disable(50);
+        litrDis = advCms.listIterator(50);
+
+        System.out.println("litrDis == null :" + (litrDis == null));
+
         System.out.println("******************************************************************");
     }
 

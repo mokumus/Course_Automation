@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CourseManagementSystemTest {
     CourseManagementSystem cms = new CourseManagementSystem("Files/Courses.csv");
 
-
+    @Test
     void listSemesterCoursesTest() {
         System.out.println("Testing for unexisting semester values.");
 
@@ -25,7 +25,7 @@ class CourseManagementSystemTest {
     }
 
 
-
+    @Test
     void getByRangeTest(){
         System.out.println("Testing for invalid semester ranges.");
 

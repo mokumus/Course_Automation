@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.muhammedokumus</OriginalElement>
+  <nodes>
+    <node x="320.0" y="211.0">com.muhammedokumus.coursestructure.BasicCourse</node>
+    <node x="0.0" y="310.5">com.muhammedokumus.CSV_Utils</node>
+    <node x="287.1" y="521.0">com.muhammedokumus.CourseManagementSystem</node>
+    <node x="452.5" y="0.0">com.muhammedokumus.coursestructure.Course</node>
+    <node x="341.68333333333334" y="754.0">com.muhammedokumus.AdvancedCMS</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.muhammedokumus.CourseManagementSystem" target="com.muhammedokumus.CSV_Utils">
+      <point x="-54.39999999999998" y="-91.5" />
+      <point x="368.70000000000005" y="491.0" />
+      <point x="225.0" y="491.0" />
+      <point x="75.0" y="25.5" />
+    </edge>
+    <edge source="com.muhammedokumus.coursestructure.BasicCourse" target="com.muhammedokumus.coursestructure.Course">
+      <point x="0.0" y="-125.0" />
+      <point x="0.0" y="80.5" />
+    </edge>
+    <edge source="com.muhammedokumus.AdvancedCMS" target="com.muhammedokumus.coursestructure.BasicCourse">
+      <point x="94.33333333333337" y="-157.5" />
+      <point x="577.5166666666667" y="729.0" />
+      <point x="569.6" y="729.0" />
+      <point x="569.6" y="501.0" />
+      <point x="687.5" y="501.0" />
+      <point x="157.5" y="125.0" />
+    </edge>
+    <edge source="com.muhammedokumus.AdvancedCMS" target="com.muhammedokumus.CourseManagementSystem">
+      <point x="0.0" y="-157.5" />
+      <point x="483.18333333333334" y="729.0" />
+      <point x="491.1" y="729.0" />
+      <point x="68.0" y="91.5" />
+    </edge>
+    <edge source="com.muhammedokumus.CourseManagementSystem" target="com.muhammedokumus.coursestructure.BasicCourse">
+      <point x="108.79999999999995" y="-91.5" />
+      <point x="531.9" y="491.0" />
+      <point x="582.5" y="491.0" />
+      <point x="52.5" y="125.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="137.0" y="643.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
